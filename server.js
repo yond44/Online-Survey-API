@@ -8,9 +8,11 @@ const answerRoute = require('./router/answer')
 app.use(express.json());
 const errorMiddleware = require('./middleware/errorMiddleware.js')
 const cors = require('cors')
+const MONGO_URL = process.env.MONGO_URL;
+const PORT = process.env.PORT;
+const FRONTEND = process.env.FRONTEND
 
-
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: FRONTEND }));
 app.use("/api", adminRoute);
 app.use("/api",categoryRoute)
 app.use("/api", answerRoute);
@@ -18,8 +20,6 @@ app.use("/api", answerRoute);
 
 //routes
 
-const MONGO_URL = process.env.MONGO_URL;
-const PORT = process.env.PORT;
 
 
 app.get('/blog', (req,res) => {
